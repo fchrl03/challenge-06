@@ -15,10 +15,19 @@ module.exports = (sequelize, DataTypes) => {
   }
   Car.init({
     name: DataTypes.STRING,
+    model: DataTypes.STRING,
+    picture: DataTypes.STRING,
     rent_price: DataTypes.FLOAT,
-    size: DataTypes.STRING,
-    image_url: DataTypes.TEXT,
-    id_user: DataTypes.INTEGER
+    capacity: DataTypes.INTEGER,
+    description: DataTypes.STRING,
+    available: DataTypes.BOOLEAN,
+    type: DataTypes.STRING,
+    year: DataTypes.STRING,
+    user_id: DataTypes.INTEGER,
+    createdBy: DataTypes.STRING,
+    deletedBy: DataTypes.STRING,
+    updatedBy: DataTypes.STRING,
+    deletedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Car',

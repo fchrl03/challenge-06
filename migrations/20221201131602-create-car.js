@@ -12,17 +12,44 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
+      model: {
+        type: Sequelize.STRING
+      },
+      picture: {
+        type: Sequelize.STRING
+      },
       rent_price: {
         type: Sequelize.FLOAT
       },
-      size: {
+      capacity: {
+        type: Sequelize.INTEGER
+      },
+      description: {
         type: Sequelize.STRING
       },
-      image_url: {
-        type: Sequelize.TEXT
+      available: {
+        type: Sequelize.BOOLEAN
       },
-      id_user: {
+      type: {
+        type: Sequelize.STRING
+      },
+      year: {
+        type: Sequelize.STRING
+      },
+      user_id: {
         type: Sequelize.INTEGER
+      },
+      createdBy: {
+        type: Sequelize.STRING
+      },
+      deletedBy: {
+        type: Sequelize.STRING
+      },
+      updatedBy: {
+        type: Sequelize.STRING
+      },
+      deletedAt: {
+        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,
