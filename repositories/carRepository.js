@@ -18,6 +18,11 @@ class CarRepository {
 
     return createdCar;
   }
+
+  static async getAllAvailable({ available }) {
+    const getAllCar = await Car.findAll({ where: { available } });
+    return getAllCar;
+  }
 }
 
 module.exports = CarRepository;

@@ -37,4 +37,14 @@ const create = (req, res) => {
   });
 };
 
-module.exports = { create };
+const getAvailableCar = async (req, res) => {
+  const available = true;
+  const { status, status_code, message, data } = await carService.getAllAvailable({ available });
+  res.status(status_code).send({
+    status: status,
+    message: message,
+    data: data,
+  });
+};
+
+module.exports = { create, getAvailableCar };

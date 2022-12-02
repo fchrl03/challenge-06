@@ -101,6 +101,25 @@ class CarService {
       };
     }
   }
+
+  static async getAllAvailable({ available }) {
+    try {
+      const availableCar = await carRepository.getAllAvailable({ available });
+      return {
+        status: true,
+        status_code: 200,
+        message: 'Get product by ID successfully',
+        data: availableCar,
+      };
+    } catch (err) {
+      return {
+        status: false,
+        status_code: 500,
+        message: err.message,
+        data: null,
+      };
+    }
+  }
 }
 
 module.exports = CarService;
