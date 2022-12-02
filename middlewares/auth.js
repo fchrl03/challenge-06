@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { JWT } = require('../lib/const');
+const { JWT, ROLES } = require('../lib/const');
 const userRepository = require('../repositories/userRepository');
 
 const authenticate = async (req, res, next) => {
@@ -34,4 +34,15 @@ const authenticate = async (req, res, next) => {
   }
 };
 
-module.exports = { authenticate };
+const isTwoAdmin = (req, res, next) => {
+  const user = req.user;
+
+  if (user.role === ROLES.SUPERADMIN || user.role === ROLES.ADMIN) return next();
+  return res.status(401).send({
+    status: false,
+    message: 'Akun anda harus super admin atau admin untuk mengakses resource ini.',
+    data: null,
+  });
+};
+
+module.exports = { authenticate, isTwoAdmin };
