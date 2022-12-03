@@ -23,6 +23,8 @@ app.get('/auth/me', middleware.authenticate, authController.currentUser);
 app.post('/cars', upload.single('picture'), middleware.authenticate, middleware.isTwoAdmin, carController.create);
 app.get('/cars/ready', carController.getAvailableCar);
 app.delete('/cars/:id', middleware.authenticate, middleware.isTwoAdmin, carController.deleteByID);
+app.get('/cars', middleware.authenticate, middleware.isTwoAdmin, carController.getAll);
+app.get('/cars/:id', middleware.authenticate, middleware.isTwoAdmin, carController.getByID);
 
 app.listen(process.env.PORT || 8000, () => {
   console.log(`Server is running in port http://localhost:${process.env.PORT || 8000}`);

@@ -1,6 +1,4 @@
 const { Car } = require('../models');
-const Sequelize = require('sequelize');
-const Op = Sequelize.Op;
 
 class CarRepository {
   static async create({ name, model, picture, rent_price, capacity, description, available, type, year, user_id, createdBy }) {
@@ -26,23 +24,26 @@ class CarRepository {
     return getAllCar;
   }
 
-  static async getByID({ id }) {
+  static async getAll() {
+    const getCar = await Car.findAll();
+    return getCar;
+  }
+
+  static async getByID({ id, deletedBy }) {
     const getCar = await Car.findOne({
       where: {
         id,
-        deletedAt: {
-          [Op.ne]: null,
-        },
+        deletedBy,
       },
     });
     return getCar;
   }
 
-  static async deleteByID({ id, user_id }) {
+  static async deleteByID({ id, deletedBy }) {
     const deleteCar = await Car.update(
       {
         deletedAt: new Date().getTime(),
-        deletedBy: user_id,
+        deletedBy,
       },
       { where: { id } }
     );

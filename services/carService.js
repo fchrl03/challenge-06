@@ -1,6 +1,25 @@
 const carRepository = require('../repositories/carRepository');
 
 class CarService {
+  static async getAll() {
+    try {
+      const getCar = await carRepository.getAll();
+      return {
+        status: true,
+        status_code: 200,
+        message: 'Get All Car',
+        data: getCar,
+      };
+    } catch (err) {
+      return {
+        status: false,
+        status_code: 500,
+        message: err.message,
+        data: null,
+      };
+    }
+  }
+
   static async create({ name, model, picture, rent_price, capacity, description, available, type, year, user_id, createdBy }) {
     try {
       if (!name) {
@@ -121,10 +140,34 @@ class CarService {
     }
   }
 
-  static async deleteByID({ id }) {
+  static async deleteByID({ id, deletedBy }) {
     try {
-      const deletedCar = await carRepository.deleteByID({ id });
-      return { status: true, status_code: 200, message: 'Car deleted successfully', data: deletedCar };
+      const deletedCar = await carRepository.deleteByID({ id, deletedBy });
+      return {
+        status: true,
+        status_code: 200,
+        message: 'Car deleted successfully',
+        data: deletedCar,
+      };
+    } catch (err) {
+      return {
+        status: false,
+        status_code: 500,
+        message: err.message,
+        data: null,
+      };
+    }
+  }
+
+  static async getByID({ id, deletedBy }) {
+    try {
+      const getCar = await carRepository.getByID({ id, deletedBy });
+      return {
+        status: true,
+        status_code: 200,
+        message: 'Get ID Car successfully(if data null, so the data has been deleted)',
+        data: getCar,
+      };
     } catch (err) {
       return {
         status: false,

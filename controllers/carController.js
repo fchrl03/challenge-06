@@ -49,7 +49,8 @@ const getAvailableCar = async (req, res) => {
 
 const deleteByID = async (req, res) => {
   const { id } = req.params;
-  const { status, status_code, message, data } = await carService.deleteByID({ id });
+  const deletedBy = req.user.name;
+  const { status, status_code, message, data } = await carService.deleteByID({ id, deletedBy });
 
   res.status(status_code).send({
     status: status,
@@ -58,4 +59,24 @@ const deleteByID = async (req, res) => {
   });
 };
 
-module.exports = { create, getAvailableCar, deleteByID };
+const getAll = async (req, res) => {
+  const { status, status_code, message, data } = await carService.getAll();
+  res.status(status_code).send({
+    status: status,
+    message: message,
+    data: data,
+  });
+};
+
+const getByID = async (req, res) => {
+  const { id } = req.params;
+  const deletedBy = null;
+  const { status, status_code, message, data } = await carService.getByID({ id, deletedBy });
+  res.status(status_code).send({
+    status: status,
+    message: message,
+    data: data,
+  });
+};
+
+module.exports = { create, getAvailableCar, deleteByID, getAll, getByID };
