@@ -89,7 +89,7 @@ class CarService {
       return {
         status: true,
         status_code: 201,
-        message: 'Post created successfully',
+        message: 'Car created successfully',
         data: createdCar,
       };
     } catch (err) {
@@ -108,9 +108,23 @@ class CarService {
       return {
         status: true,
         status_code: 200,
-        message: 'Get product by ID successfully',
+        message: 'Get Car by ID successfully',
         data: availableCar,
       };
+    } catch (err) {
+      return {
+        status: false,
+        status_code: 500,
+        message: err.message,
+        data: null,
+      };
+    }
+  }
+
+  static async deleteByID({ id }) {
+    try {
+      const deletedCar = await carRepository.deleteByID({ id });
+      return { status: true, status_code: 200, message: 'Car deleted successfully', data: deletedCar };
     } catch (err) {
       return {
         status: false,
