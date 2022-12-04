@@ -79,4 +79,40 @@ const getByID = async (req, res) => {
   });
 };
 
-module.exports = { create, getAvailableCar, deleteByID, getAll, getByID };
+const updateByID = (req, res) => {
+  const { id } = req.params;
+  const fileToUpload = req.file;
+  const { name, model, picture, rent_price, capacity, description, available, type, year } = req.body;
+  const updatedBy = req.user.name;
+  const fileBase64 = fileToUpload.buffer.toString('base64');
+  const file = `data:${fileToUpload.mimetype};base64,${fileBase64}`;
+
+  cloudinary.uploader.upload(file, async (err, result) => {
+    if (err) {
+      res.status(400).send(`Gagal mengupload file ke cloudinary: ${err.message}`);
+
+      return;
+    }
+    const { status, status_code, message, data } = await carService.updateByID({
+      id,
+      name,
+      model,
+      picture: result.url,
+      rent_price,
+      capacity,
+      description,
+      available,
+      type,
+      year,
+      updatedBy,
+    });
+
+    res.status(status_code).send({
+      status: status,
+      message: message,
+      data: data,
+    });
+  });
+};
+
+module.exports = { create, getAvailableCar, deleteByID, getAll, getByID, updateByID };

@@ -49,6 +49,25 @@ class CarRepository {
     );
     return deleteCar;
   }
+
+  static async updateByID({ id, name, model, picture, rent_price, capacity, description, available, type, year, updatedBy }) {
+    const updatedCar = await Car.update(
+      {
+        name,
+        model,
+        picture,
+        rent_price,
+        capacity,
+        description,
+        available,
+        type,
+        year,
+        updatedBy,
+      },
+      { where: { id } }
+    );
+    return updatedCar;
+  }
 }
 
 module.exports = CarRepository;

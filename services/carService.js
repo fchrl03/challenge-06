@@ -177,6 +177,25 @@ class CarService {
       };
     }
   }
+
+  static async updateByID({ id, name, model, picture, rent_price, capacity, description, available, type, year, updatedBy }) {
+    try {
+      const updatedCar = await carRepository.updateByID({ id, name, model, picture, rent_price, capacity, description, available, type, year, updatedBy });
+      return {
+        status: true,
+        status_code: 200,
+        message: 'Car updated successfully',
+        data: updatedCar,
+      };
+    } catch (err) {
+      return {
+        status: false,
+        status_code: 500,
+        message: err.message,
+        data: null,
+      };
+    }
+  }
 }
 
 module.exports = CarService;

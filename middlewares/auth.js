@@ -45,4 +45,14 @@ const isTwoAdmin = (req, res, next) => {
   });
 };
 
-module.exports = { authenticate, isTwoAdmin };
+const isSuperAdmin = (req, res, next) => {
+  const user = req.user;
+  if (user.role === ROLES.SUPERADMIN) return next();
+  return res.status(401).send({
+    status: false,
+    message: 'Akun anda harus super admin untuk mengakses resource ini.',
+    data: null,
+  });
+};
+
+module.exports = { authenticate, isTwoAdmin, isSuperAdmin };

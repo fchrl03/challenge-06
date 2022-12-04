@@ -15,8 +15,9 @@ const carController = require('./controllers/carController');
 const middleware = require('./middlewares/auth');
 
 // Auth
-app.post('/auth/register', authController.register);
-app.post('/auth/login', authController.login);
+app.post('/register', authController.register);
+app.post('/login', authController.login);
+app.post('/auth/admin', middleware.authenticate, middleware.isSuperAdmin, authController.registerAdmin);
 app.get('/auth/me', middleware.authenticate, authController.currentUser);
 
 // Cars
@@ -25,6 +26,7 @@ app.get('/cars/ready', carController.getAvailableCar);
 app.delete('/cars/:id', middleware.authenticate, middleware.isTwoAdmin, carController.deleteByID);
 app.get('/cars', middleware.authenticate, middleware.isTwoAdmin, carController.getAll);
 app.get('/cars/:id', middleware.authenticate, middleware.isTwoAdmin, carController.getByID);
+app.put('/cars/:id', middleware.authenticate, middleware.isTwoAdmin, upload.single('picture'), carController.updateByID);
 
 app.listen(process.env.PORT || 8000, () => {
   console.log(`Server is running in port http://localhost:${process.env.PORT || 8000}`);
