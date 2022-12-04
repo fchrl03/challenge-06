@@ -37,14 +37,14 @@ components:
                 - error
             message:
               type: string
-    AuthLogin:
+    Login:
       type: object
       properties:
         email:
           type: string
         password:
           type: string
-    AuthRegister:
+    Register:
       type: object
       properties:
         role:
@@ -54,4 +54,25 @@ components:
         email:
           type: string
         password:
+          type: string
+    Cars:
+      type: object
+      properties:
+        name:
+          type: string
+        model:
+          type: string
+        picture:
+          type: string
+        rent_price:
+          type: number
+        capacity:
+          type: integer
+        description:
+          type: string
+        available:
+          type: boolean
+        type:
+          type: string
+        year:
           type: string

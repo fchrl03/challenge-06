@@ -1,5 +1,5 @@
 paths:
-  /api/auth/login:
+  /login:
     post:
       summary: User login
       security:
@@ -13,7 +13,7 @@ paths:
         content:
           'application/json':
             schema:
-              $ref: '#/components/schemas/AuthLogin'
+              $ref: '#/components/schemas/Login'
       produces:
         - application/json
       responses:
@@ -32,10 +32,10 @@ paths:
                             - properties:
                                 id:
                                   type: integer
-                            - $ref: '#/components/schemas/AuthLogin'
-  /api/auth/register:
+                            - $ref: '#/components/schemas/Login'
+  /register:
     post:
-      summary: Register User
+      summary: Register Member
       tags:
         - Auth
       consumes:
@@ -45,7 +45,7 @@ paths:
         content:
           'application/json':
             schema:
-              $ref: '#/components/schemas/AuthRegister'
+              $ref: '#/components/schemas/Register'
       produces:
         - application/json
       responses:
@@ -64,4 +64,4 @@ paths:
                             - properties:
                                 id:
                                   type: integer
-                            - $ref: '#/components/schemas/AuthRegister'
+                            - $ref: '#/components/schemas/Register'

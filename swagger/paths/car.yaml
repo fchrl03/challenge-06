@@ -1,0 +1,162 @@
+paths:
+  /cars/ready:
+    get:
+      summary: Available Cars
+      security:
+        - BearerAuth: []
+      tags:
+        - Car
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: An array of available car data
+          content:
+            'application/json':
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/JsendSuccess'
+                  - properties:
+                      data:
+                        type: array
+                        items:
+                          allOf:
+                            - properties:
+                                id:
+                                  type: integer
+                            - $ref: '#/components/schemas/Cars'
+/cars/{id}:
+  get:
+    parameters:
+      - in: path
+        name: id
+        required: true
+    security:
+      - BearerAuth: []
+    tags:
+      - Car
+    consumes:
+      - application/json
+    produces:
+      - application/json
+    responses:
+      200:
+        description: An array of id car data
+        content:
+          'application/json':
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/JsendSuccess'
+                - properties:
+                    data:
+                      type: array
+                      items:
+                        allOf:
+                          - properties:
+                              id:
+                                type: integer
+                          - $ref: '#/components/schemas/Cars'
+/cars:
+  post:
+    summary: Add Cars
+    security:
+      - BearerAuth: []
+    tags:
+      - Car
+    consumes:
+      - application/json
+    requestBody:
+      required: true
+      content:
+        'application/json':
+          schema:
+            $ref: '#/components/schemas/Cars'
+    produces:
+      - application/json
+    responses:
+      200:
+        description: An array of car data
+        content:
+          'application/json':
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/JsendSuccess'
+                - properties:
+                    data:
+                      type: array
+                      items:
+                        allOf:
+                          - properties:
+                              id:
+                                type: integer
+                          - $ref: '#/components/schemas/Cars'
+/cars/{id1}:
+  delete:
+    parameters:
+      - in: path
+        name: id1
+        required: true
+    security:
+      - BearerAuth: []
+    tags:
+      - Car
+    consumes:
+      - application/json
+    produces:
+      - application/json
+    responses:
+      200:
+        description: An array of id car data
+        content:
+          'application/json':
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/JsendSuccess'
+                - properties:
+                    data:
+                      type: array
+                      items:
+                        allOf:
+                          - properties:
+                              id:
+                                type: integer
+                          - $ref: '#/components/schemas/Cars'
+/cars/{id2}:
+  put:
+    parameters:
+      - in: path
+        name: id2
+        required: true
+    security:
+      - BearerAuth: []
+    tags:
+      - Car
+    consumes:
+      - application/json
+    requestBody:
+      required: true
+      content:
+        'application/json':
+          schema:
+            $ref: '#/components/schemas/Cars'
+    produces:
+      - application/json
+    responses:
+      200:
+        description: An array of car data
+        content:
+          'application/json':
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/JsendSuccess'
+                - properties:
+                    data:
+                      type: array
+                      items:
+                        allOf:
+                          - properties:
+                              id:
+                                type: integer
+                          - $ref: '#/components/schemas/Cars'
