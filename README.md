@@ -3,17 +3,23 @@
 - Gunakan express dan sequelize, untuk memenuhi kebutuhan CRUD.
 - Gunakan bcrypt atau bcryptjs untuk mengenkripsi password user.
 - Gunakan passport atau jsonwebtoken, untuk memenuhi kebutuhan Token Based
-Authentication.
+  Authentication.
 - Gunakan Swagger Editor, Stoplight Studio, atau tools lain dalam menulis Open API
-Documentation.
+  Documentation.
 - Gunakan Swagger, Redoc, Stoplight Element, atau Tools yang memvisualisasikan
-Open API documentation lainnya.
+  Open API documentation lainnya.
 - Gunakan seeders untuk menginsert data superadmin.
 
+In the project directory, you can run:
+
+### `npm run start`
+
 # Endpoint Rest API
+
 - Check Folder Swagger
 
 # Edit .env
+
 - File `.env`
 
 ```typescript

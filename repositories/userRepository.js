@@ -1,4 +1,5 @@
 const { User } = require('../models');
+const { deleteByID } = require('./carRepository');
 
 class UserRepository {
   static async getByID({ id }) {
@@ -19,6 +20,16 @@ class UserRepository {
       role,
     });
     return createdUser;
+  }
+
+  static async getAll() {
+    const getUser = await User.findAll();
+    return getUser;
+  }
+
+  static async deleteByID({ id }) {
+    const userDelete = await User.destroy({ where: { id } });
+    return userDelete;
   }
 }
 
